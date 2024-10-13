@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - eT3 Cash{% endblock %}
+
+{% block content %}
+  {% if is_authenticated %}
+    <h2>Welcome, {{ user.username }}</h2>
+    <p>Your balance: ${{ balance }}</p>
+
+    <h3>Last 5 Transactions</h3>
+    <ul>
+      {% for transaction in transactions %}
+        <li>{{ transaction.transaction_type }} - ${{ transaction.amount }} on {{ transaction.date }}</li>
+      {% empty %}
+        <li>No transactions available.</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h2>Welcome to eT3 Cash</h2>
+    <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to view your account information.</p>
+  {% endif %}
+{% endblock %}

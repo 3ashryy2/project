@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15.8-alpine
+    restart: always
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: mydb          # Change this to your database name
+      POSTGRES_USER: myuser      # Change this to your database user
+      POSTGRES_PASSWORD: mypassword  # Change this to your database password
+    ports:
+      - "5432:5432"
+
+
+volumes:
+  postgresql_data:

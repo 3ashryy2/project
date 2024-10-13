@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}eT3 Cash{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="{% url 'accounts:home' %}">Home</a></li>
+          <li><a href="{% url 'accounts:profile' %}">Profile</a></li>
+          <li><a href="{% url 'transactions:deposit' %}">Deposit</a></li>
+          <li><a href="{% url 'transactions:withdraw' %}">Withdraw</a></li>
+          <li><a href="{% url 'transactions:send_money' %}">Send Money</a></li>
+          <li><a href="{% url 'payments:make_payment' %}">Make Payment</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'accounts:logout' %}">Logout</a></li>  <!-- Show Logout for authenticated users -->
+          {% else %}
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <li><a href="{% url 'accounts:register' %}">Register</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer>
+      <p>&copy; 2024 eT3 Cash</p>
+    </footer>
+  </body>
+</html>
